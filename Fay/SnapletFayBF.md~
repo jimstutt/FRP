@@ -1,0 +1,28 @@
+*** Parser:
+*** Renamer/typechecker:
+
+src/Snap/Snaplet/Fay.hs:126:25:
+    Could not deduce (Data f2) arising from a use of ‘showToFay’
+    from the context (Show f2)
+      bound by the type signature for
+                 toFayax :: Show f2 => Handler h1 h2 f2 -> Handler h1 h2 ()
+      at src/Snap/Snaplet/Fay.hs:123:12-58
+    Possible fix:
+      add (Data f2) to the context of
+        the type signature for
+          toFayax :: Show f2 => Handler h1 h2 f2 -> Handler h1 h2 ()
+    In the second argument of ‘(.)’, namely ‘showToFay’
+    In the second argument of ‘(.)’, namely ‘A.encode . showToFay’
+    In the first argument of ‘(=<<)’, namely
+      ‘writeLBS . A.encode . showToFay’
+Upsweep partially successful.
+*** Deleting temp files:
+Deleting: /tmp/ghc3495_0/ghc3495_11.s
+Warning: deleting non-existent /tmp/ghc3495_0/ghc3495_11.s
+link(batch): upsweep (partially) failed OR
+   Main.main not exported; not linking.
+*** Deleting temp files:
+Deleting: 
+*** Deleting temp dirs:
+Deleting: /tmp/ghc3495_0
+/home/jim/Sandbox/GHC/bin/ghc returned ExitFailure 1
