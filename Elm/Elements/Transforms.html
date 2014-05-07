@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Transforms</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var hexagon = function (clr) {
+      return A2(Graphics.Collage.outlined,
+      Graphics.Collage.solid(clr),
+      A2(Graphics.Collage.ngon,6,40));
+   };
+   var main = A3(Graphics.Collage.collage,
+   300,
+   300,
+   _L.fromArray([hexagon(Color.red)
+                ,A2(Graphics.Collage.scale,
+                2,
+                hexagon(Color.purple))
+                ,A2(Graphics.Collage.move,
+                {ctor: "_Tuple2",_0: 100,_1: 0},
+                hexagon(Color.green))
+                ,A2(Graphics.Collage.rotate,
+                Basics.degrees(30),
+                hexagon(Color.blue))]));
+   _elm.Main.values = {_op: _op
+                      ,hexagon: hexagon
+                      ,main: main};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

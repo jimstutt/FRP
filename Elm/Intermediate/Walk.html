@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Walk</title><script type="text/javascript" src="../elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var Keyboard = Elm.Keyboard.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Window = Elm.Window.make(_elm);
+   var _op = {};
+   var delta = A2(Signal.lift,
+   function (t) {
+      return t / 20;
+   },
+   Time.fps(25));
+   var input = A2(Signal.sampleOn,
+   delta,
+   A4(Signal.lift3,
+   F3(function (v0,v1,v2) {
+      return {ctor: "_Tuple3"
+             ,_0: v0
+             ,_1: v1
+             ,_2: v2};
+   }),
+   delta,
+   Keyboard.arrows,
+   Keyboard.shift));
+   var runStep = F2(function (running,
+   obj) {
+      return function () {
+         var scale = running ? 2 : 1;
+         return _U.replace([["vx"
+                            ,obj.vx * scale]
+                           ,["vy",obj.vy * scale]],
+         obj);
+      }();
+   });
+   var dirStep = F2(function (_v0,
+   obj) {
+      return function () {
+         return _U.replace([["dir"
+                            ,_U.cmp(_v0.x,
+                            0) > 0 ? "east" : _U.cmp(_v0.x,
+                            0) < 0 ? "west" : _U.cmp(_v0.y,
+                            0) < 0 ? "south" : _U.cmp(_v0.y,
+                            0) > 0 ? "north" : obj.dir]],
+         obj);
+      }();
+   });
+   var velStep = F2(function (d,
+   obj) {
+      return function () {
+         var f = function (n) {
+            return _U.eq(d.x,
+            0) || _U.eq(d.y,
+            0) ? Basics.toFloat(n) : Basics.toFloat(n) / Basics.sqrt(2);
+         };
+         return _U.replace([["vx",f(d.x)]
+                           ,["vy",f(d.y)]],
+         obj);
+      }();
+   });
+   var hero = {_: {}
+              ,dir: "south"
+              ,vx: 0
+              ,vy: 0
+              ,x: 0
+              ,y: 0};
+   var areaH = 301;
+   var areaW = 407;
+   var timeStep = F2(function (t,
+   _v2) {
+      return function () {
+         return _U.replace([["x"
+                            ,A3(Basics.clamp,
+                            (0 - areaW) / 2,
+                            areaW / 2,
+                            _v2.x + t * _v2.vx)]
+                           ,["y"
+                            ,A3(Basics.clamp,
+                            (0 - areaH) / 2,
+                            areaH / 2,
+                            _v2.y + t * _v2.vy)]],
+         _v2);
+      }();
+   });
+   var step = F2(function (_v4,
+   hero) {
+      return function () {
+         switch (_v4.ctor)
+         {case "_Tuple3":
+            return timeStep(_v4._0)(dirStep(_v4._1)(runStep(_v4._2)(velStep(_v4._1)(hero))));}
+         _E.Case($moduleName,
+         "on line 33, column 5 to 74");
+      }();
+   });
+   var display = F2(function (_v9,
+   _v10) {
+      return function () {
+         return function () {
+            switch (_v9.ctor)
+            {case "_Tuple2":
+               return A3(Graphics.Element.container,
+                 _v9._0,
+                 _v9._1,
+                 Graphics.Element.middle)(A2(Graphics.Collage.collage,
+                 areaW,
+                 areaH)(_L.fromArray([Graphics.Collage.toForm(A3(Graphics.Element.image,
+                                     areaW,
+                                     areaH,
+                                     "resources/imgs/desert.png"))
+                                     ,function () {
+                                        var verb = _U.eq(_v10.vx,
+                                        0) && _U.eq(_v10.vy,
+                                        0) ? "stand" : "walk";
+                                        var src = _L.append("resources/imgs/hero/",
+                                        _L.append(verb,
+                                        _L.append("/",
+                                        _L.append(_v10.dir,".gif"))));
+                                        return A2(Graphics.Collage.move,
+                                        {ctor: "_Tuple2"
+                                        ,_0: _v10.x
+                                        ,_1: _v10.y},
+                                        Graphics.Collage.toForm(A3(Graphics.Element.image,
+                                        22,
+                                        28,
+                                        src)));
+                                     }()
+                                     ,Graphics.Collage.move({ctor: "_Tuple2"
+                                                            ,_0: 70 - areaW / 2
+                                                            ,_1: 30 - areaH / 2})(Graphics.Collage.toForm(Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><p>Arrows to move<br/>Shift to run</p><div style=\"height:0;width:0;\">&nbsp;</div>",
+                                     "50:14")))])));}
+            _E.Case($moduleName,
+            "between lines 45 and 52");
+         }();
+      }();
+   });
+   var main = A3(Signal.lift2,
+   display,
+   Window.dimensions,
+   A3(Signal.foldp,
+   step,
+   hero,
+   input));
+   _elm.Main.values = {_op: _op
+                      ,areaW: areaW
+                      ,areaH: areaH
+                      ,hero: hero
+                      ,velStep: velStep
+                      ,dirStep: dirStep
+                      ,runStep: runStep
+                      ,timeStep: timeStep
+                      ,step: step
+                      ,delta: delta
+                      ,input: input
+                      ,main: main
+                      ,display: display};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

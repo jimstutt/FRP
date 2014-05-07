@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>GameSkeleton</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.GameSkeleton = Elm.GameSkeleton || {};
+Elm.GameSkeleton.make = function (_elm) {
+   "use strict";
+   _elm.GameSkeleton = _elm.GameSkeleton || {};
+   if (_elm.GameSkeleton.values)
+   return _elm.GameSkeleton.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "GameSkeleton";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Window = Elm.Window.make(_elm);
+   var _op = {};
+   var delta = Time.fps(30);
+   var display = F2(function (_v0,
+   gameState) {
+      return function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return Text.asText(gameState);}
+         _E.Case($moduleName,
+         "on line 71, column 27 to 43");
+      }();
+   });
+   var stepGame = F2(function (_v4,
+   gameState) {
+      return function () {
+         return gameState;
+      }();
+   });
+   var defaultGame = {_: {}};
+   var GameState = {_: {}};
+   var Input = F2(function (a,b) {
+      return {_: {}
+             ,timeDelta: a
+             ,userInput: b};
+   });
+   var userInput = Signal.constant({_: {}});
+   var input = A2(Signal.sampleOn,
+   delta,
+   A3(Signal.lift2,
+   Input,
+   delta,
+   userInput));
+   var gameState = A3(Signal.foldp,
+   stepGame,
+   defaultGame,
+   input);
+   var main = A3(Signal.lift2,
+   display,
+   Window.dimensions,
+   gameState);
+   var UserInput = {_: {}};
+   _elm.GameSkeleton.values = {_op: _op
+                              ,userInput: userInput
+                              ,defaultGame: defaultGame
+                              ,stepGame: stepGame
+                              ,display: display
+                              ,delta: delta
+                              ,input: input
+                              ,gameState: gameState
+                              ,main: main
+                              ,UserInput: UserInput
+                              ,Input: Input
+                              ,GameState: GameState};
+   return _elm.GameSkeleton.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.GameSkeleton)</script><noscript></noscript></body></html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Plot</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Input = Elm.Graphics.Input.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var polarGraph = F2(function (f,
+   thetas) {
+      return A3(List.zipWith,
+      F2(function (r,t) {
+         return Basics.fromPolar({ctor: "_Tuple2"
+                                 ,_0: r
+                                 ,_1: t});
+      }),
+      A2(List.map,f,thetas),
+      thetas);
+   });
+   var graph = F2(function (f,
+   range) {
+      return A2(List.zip,
+      range,
+      A2(List.map,f,range));
+   });
+   var offRange = A2(List.map,
+   function (x) {
+      return Basics.toFloat(x) / 5;
+   },
+   _L.range(-20,10));
+   var piRange = A2(List.map,
+   function (x) {
+      return Basics.toFloat(x) / 40 * Basics.pi;
+   },
+   _L.range(-40,40));
+   var range = A2(List.map,
+   Basics.toFloat,
+   _L.range(-10,10));
+   var lissajous = F3(function (m,
+   n,
+   t) {
+      return {ctor: "_Tuple2"
+             ,_0: Basics.cos(m * t)
+             ,_1: Basics.sin(n * t)};
+   });
+   var pointOptions = _L.fromArray([{ctor: "_Tuple2"
+                                    ,_0: "r = cos(4t)"
+                                    ,_1: A2(polarGraph,
+                                    function (t) {
+                                       return Basics.cos(4 * t);
+                                    },
+                                    piRange)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "Lissajous"
+                                    ,_1: A2(List.map,
+                                    A2(lissajous,3,2),
+                                    piRange)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "Circle"
+                                    ,_1: A2(List.map,
+                                    function (t) {
+                                       return {ctor: "_Tuple2"
+                                              ,_0: Basics.cos(t)
+                                              ,_1: Basics.sin(t)};
+                                    },
+                                    piRange)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "x^2"
+                                    ,_1: A2(graph,
+                                    function (x) {
+                                       return x * x;
+                                    },
+                                    range)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "x^2 + x - 9"
+                                    ,_1: A2(graph,
+                                    function (x) {
+                                       return x * x + x - 9;
+                                    },
+                                    offRange)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "x^3"
+                                    ,_1: A2(graph,
+                                    function (x) {
+                                       return x * x * x;
+                                    },
+                                    range)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "Sin Wave"
+                                    ,_1: A2(graph,
+                                    Basics.sin,
+                                    piRange)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "Cosine Wave"
+                                    ,_1: A2(graph,
+                                    Basics.cos,
+                                    piRange)}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "Scattered"
+                                    ,_1: A2(graph,
+                                    function (x) {
+                                       return x + Basics.tan(x);
+                                    },
+                                    range)}]);
+   var Line = {ctor: "Line"};
+   var Points = {ctor: "Points"};
+   var styleOptions = _L.fromArray([{ctor: "_Tuple2"
+                                    ,_0: "Line Graph"
+                                    ,_1: Line}
+                                   ,{ctor: "_Tuple2"
+                                    ,_0: "Scatter Plot"
+                                    ,_1: Points}]);
+   var plot = F4(function (style,
+   w,
+   h,
+   points) {
+      return function () {
+         var draw = function (ps) {
+            return function () {
+               switch (style.ctor)
+               {case "Line":
+                  return _L.fromArray([Graphics.Collage.traced(Graphics.Collage.solid(Color.lightBlue))(Graphics.Collage.path(ps))]);
+                  case "Points":
+                  return A2(List.map,
+                    function (p) {
+                       return Graphics.Collage.move(p)(Graphics.Collage.outlined(Graphics.Collage.solid(Color.lightBlue))(A2(Graphics.Collage.ngon,
+                       4,
+                       3)));
+                    },
+                    ps);}
+               _E.Case($moduleName,
+               "between lines 81 and 84");
+            }();
+         };
+         var fit = F4(function (scale,
+         lo,
+         hi,
+         z) {
+            return scale * Basics.abs(z - lo) / Basics.abs(hi - lo);
+         });
+         var eps = 26 / 25;
+         var $ = List.unzip(points),
+         xs = $._0,
+         ys = $._1;
+         var $ = {ctor: "_Tuple2"
+                 ,_0: eps * List.minimum(xs)
+                 ,_1: eps * List.maximum(xs)},
+         xmin = $._0,
+         xmax = $._1;
+         var $ = {ctor: "_Tuple2"
+                 ,_0: eps * List.minimum(ys)
+                 ,_1: eps * List.maximum(ys)},
+         ymin = $._0,
+         ymax = $._1;
+         var f = function (_v1) {
+            return function () {
+               switch (_v1.ctor)
+               {case "_Tuple2":
+                  return {ctor: "_Tuple2"
+                         ,_0: A4(fit,w,xmin,xmax,_v1._0)
+                         ,_1: A4(fit,
+                         h,
+                         ymin,
+                         ymax,
+                         _v1._1)};}
+               _E.Case($moduleName,
+               "on line 77, column 18 to 54");
+            }();
+         };
+         var axis = F2(function (a,b) {
+            return Graphics.Collage.traced(Graphics.Collage.solid(Color.black))(Graphics.Collage.path(List.map(f)(_L.fromArray([a
+                                                                                                                               ,b]))));
+         });
+         var xaxis = A2(axis,
+         {ctor: "_Tuple2"
+         ,_0: xmin
+         ,_1: A3(Basics.clamp,
+         ymin,
+         ymax,
+         0)},
+         {ctor: "_Tuple2"
+         ,_0: xmax
+         ,_1: A3(Basics.clamp,
+         ymin,
+         ymax,
+         0)});
+         var yaxis = A2(axis,
+         {ctor: "_Tuple2"
+         ,_0: A3(Basics.clamp,
+         xmin,
+         xmax,
+         0)
+         ,_1: ymin},
+         {ctor: "_Tuple2"
+         ,_0: A3(Basics.clamp,
+         xmin,
+         xmax,
+         0)
+         ,_1: ymax});
+         return A3(Graphics.Collage.collage,
+         Basics.round(w),
+         Basics.round(h),
+         _L.fromArray([Graphics.Collage.move({ctor: "_Tuple2"
+                                             ,_0: -200
+                                             ,_1: -200})(Graphics.Collage.group(_L.append(_L.fromArray([xaxis
+                                                                                                       ,yaxis]),
+         draw(A2(List.map,
+         f,
+         points)))))]));
+      }();
+   });
+   var points = Graphics.Input.input(Basics.snd(List.head(pointOptions)));
+   var style = Graphics.Input.input(Line);
+   var scene = F2(function (currentStyle,
+   currentPoints) {
+      return A2(Graphics.Element.flow,
+      Graphics.Element.down,
+      _L.fromArray([A4(plot,
+                   currentStyle,
+                   400,
+                   400,
+                   currentPoints)
+                   ,A2(Graphics.Element.flow,
+                   Graphics.Element.right,
+                   _L.fromArray([Text.plainText("Options: ")
+                                ,A2(Graphics.Input.dropDown,
+                                points.handle,
+                                pointOptions)
+                                ,A2(Graphics.Input.dropDown,
+                                style.handle,
+                                styleOptions)]))]));
+   });
+   var main = A3(Signal.lift2,
+   scene,
+   style.signal,
+   points.signal);
+   _elm.Main.values = {_op: _op
+                      ,style: style
+                      ,points: points
+                      ,main: main
+                      ,scene: scene
+                      ,styleOptions: styleOptions
+                      ,lissajous: lissajous
+                      ,pointOptions: pointOptions
+                      ,range: range
+                      ,piRange: piRange
+                      ,offRange: offRange
+                      ,graph: graph
+                      ,polarGraph: polarGraph
+                      ,plot: plot
+                      ,Points: Points
+                      ,Line: Line};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

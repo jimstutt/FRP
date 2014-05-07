@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Tracer</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var adjust = F3(function (x,
+   by,
+   n) {
+      return function () {
+         switch (n)
+         {case 0:
+            return _L.fromArray([]);}
+         return {ctor: "::"
+                ,_0: x
+                ,_1: A3(adjust,by(x),by,n - 1)};
+      }();
+   });
+   var zipWith3 = F4(function (f,
+   xs,
+   ys,
+   zs) {
+      return function () {
+         var _v1 = {ctor: "_Tuple3"
+                   ,_0: xs
+                   ,_1: ys
+                   ,_2: zs};
+         switch (_v1.ctor)
+         {case "_Tuple3":
+            switch (_v1._0.ctor)
+              {case "::": switch (_v1._1.ctor)
+                   {case "::": switch (_v1._2.ctor)
+                        {case "::": return {ctor: "::"
+                                           ,_0: A3(f,
+                                           _v1._0._0,
+                                           _v1._1._0,
+                                           _v1._2._0)
+                                           ,_1: A4(zipWith3,
+                                           f,
+                                           _v1._0._1,
+                                           _v1._1._1,
+                                           _v1._2._1)};}
+                        break;}
+                   break;}
+              break;}
+         return _L.fromArray([]);
+      }();
+   });
+   var zipWith4 = F5(function (f,
+   ws,
+   xs,
+   ys,
+   zs) {
+      return function () {
+         var _v11 = {ctor: "_Tuple4"
+                    ,_0: ws
+                    ,_1: xs
+                    ,_2: ys
+                    ,_3: zs};
+         switch (_v11.ctor)
+         {case "_Tuple4":
+            switch (_v11._0.ctor)
+              {case "::":
+                 switch (_v11._1.ctor)
+                   {case "::":
+                      switch (_v11._2.ctor)
+                        {case "::":
+                           switch (_v11._3.ctor)
+                             {case "::": return {ctor: "::"
+                                                ,_0: A4(f,
+                                                _v11._0._0,
+                                                _v11._1._0,
+                                                _v11._2._0,
+                                                _v11._3._0)
+                                                ,_1: A5(zipWith4,
+                                                f,
+                                                _v11._0._1,
+                                                _v11._1._1,
+                                                _v11._2._1,
+                                                _v11._3._1)};}
+                             break;}
+                        break;}
+                   break;}
+              break;}
+         return _L.fromArray([]);
+      }();
+   });
+   var osc = function (n) {
+      return _U.cmp(n,
+      255) < 1 ? n : 255 - A2(Basics.mod,
+      n,
+      255);
+   };
+   var c = F2(function (m,t) {
+      return osc(A2(Basics.mod,
+      t * m,
+      510));
+   });
+   var red = c(3);
+   var green = c(5);
+   var blue = c(7);
+   var av$ = 5;
+   var angle$ = function (t) {
+      return Basics.degrees(t * av$);
+   };
+   var av = 3;
+   var angle = function (t) {
+      return Basics.degrees(t * av);
+   };
+   var trail = 100;
+   var rate = 32;
+   var stateSignal = A2(Signal.foldp,
+   F2(function (a,b) {
+      return b + 1;
+   }),
+   0)(Time.every(rate * Time.millisecond));
+   var size = 3;
+   var areaSize = 400;
+   var cx = areaSize / 2;
+   var cy = areaSize / 2;
+   var r = areaSize / 3;
+   var r$ = r / 3;
+   var posX = function (t) {
+      return cx + r * Basics.cos(3 * angle(t));
+   };
+   var posX$ = function (t) {
+      return posX(t) + r$ * Basics.cos(angle$(t));
+   };
+   var posY = function (t) {
+      return cy + r * Basics.sin(2 * angle(t));
+   };
+   var posY$ = function (t) {
+      return posY(t) + r$ * Basics.sin(angle$(t));
+   };
+   var pos$ = function (t) {
+      return {ctor: "_Tuple2"
+             ,_0: posX$(t)
+             ,_1: posY$(t)};
+   };
+   var pixel = F3(function (color,
+   time,
+   size) {
+      return function () {
+         var p = pos$(time);
+         var off = (0 - areaSize) / 2;
+         var move$ = function (_v24) {
+            return function () {
+               switch (_v24.ctor)
+               {case "_Tuple2":
+                  return Graphics.Collage.move({ctor: "_Tuple2"
+                                               ,_0: _v24._0 + off
+                                               ,_1: _v24._1 + off});}
+               _E.Case($moduleName,
+               "on line 32, column 22 to 40");
+            }();
+         };
+         return A2(move$,
+         p,
+         A2(Graphics.Collage.filled,
+         color,
+         Graphics.Collage.circle(size)));
+      }();
+   });
+   var drawing = function (time) {
+      return function () {
+         var alphas = A3(adjust,
+         1,
+         function (a) {
+            return a - 1 / trail;
+         },
+         trail);
+         var sizes = A3(adjust,
+         size,
+         function (s) {
+            return s - size / trail;
+         },
+         trail);
+         var times = List.filter(function (x) {
+            return _U.cmp(x,0) > 0;
+         })(A3(adjust,
+         time,
+         function (t) {
+            return t - 1;
+         },
+         trail));
+         var reds = A2(List.map,
+         red,
+         times);
+         var greens = A2(List.map,
+         green,
+         times);
+         var blues = A2(List.map,
+         blue,
+         times);
+         var colors = A5(zipWith4,
+         Color.rgba,
+         reds,
+         greens,
+         blues,
+         alphas);
+         var pixels = A4(zipWith3,
+         pixel,
+         colors,
+         times,
+         sizes);
+         return A3(Graphics.Collage.collage,
+         areaSize,
+         areaSize,
+         pixels);
+      }();
+   };
+   var main = A2(Signal._op["<~"],
+   drawing,
+   stateSignal);
+   _elm.Main.values = {_op: _op
+                      ,areaSize: areaSize
+                      ,size: size
+                      ,rate: rate
+                      ,trail: trail
+                      ,av: av
+                      ,av$: av$
+                      ,cx: cx
+                      ,cy: cy
+                      ,r: r
+                      ,r$: r$
+                      ,angle: angle
+                      ,angle$: angle$
+                      ,posX: posX
+                      ,posY: posY
+                      ,posX$: posX$
+                      ,posY$: posY$
+                      ,pos$: pos$
+                      ,pixel: pixel
+                      ,osc: osc
+                      ,c: c
+                      ,red: red
+                      ,green: green
+                      ,blue: blue
+                      ,drawing: drawing
+                      ,stateSignal: stateSignal
+                      ,main: main
+                      ,zipWith4: zipWith4
+                      ,zipWith3: zipWith3
+                      ,adjust: adjust};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

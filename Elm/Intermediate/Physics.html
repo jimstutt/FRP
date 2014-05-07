@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Physics</title><script type="text/javascript" src="../elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var bouncingBallAt = function (angle) {
+      return function () {
+         var ground = A2(Graphics.Collage.filled,
+         Color.green,
+         A2(Graphics.Collage.rect,
+         300,
+         50));
+         var ball = A2(Graphics.Collage.filled,
+         Color.red,
+         Graphics.Collage.circle(15));
+         return A3(Graphics.Collage.collage,
+         300,
+         200,
+         _J.toList([Graphics.Collage.move({ctor: "_Tuple2"
+                                          ,_0: 0
+                                          ,_1: Basics.abs(150 * Basics.sin(angle)) - 75})(ball)
+                   ,Graphics.Collage.move({ctor: "_Tuple2"
+                                          ,_0: 0
+                                          ,_1: -100})(ground)]));
+      }();
+   };
+   var sunAndEarthAt = function (angle) {
+      return function () {
+         var sun = Graphics.Collage.group(_J.toList([A2(Graphics.Collage.filled,
+                                                    Color.lightYellow,
+                                                    Graphics.Collage.circle(35))
+                                                    ,Graphics.Collage.toForm(Text.plainText("Sun"))]));
+         var earth = Graphics.Collage.group(_J.toList([A2(Graphics.Collage.filled,
+                                                      Color.lightBlue,
+                                                      Graphics.Collage.circle(20))
+                                                      ,Graphics.Collage.toForm(Text.plainText("Earth"))]));
+         return A3(Graphics.Collage.collage,
+         300,
+         200,
+         _J.toList([Graphics.Collage.move({ctor: "_Tuple2"
+                                          ,_0: 120 * Basics.cos(angle)
+                                          ,_1: 80 * Basics.sin(angle)})(earth)
+                   ,Graphics.Collage.move({ctor: "_Tuple2"
+                                          ,_0: 25
+                                          ,_1: 0})(sun)]));
+      }();
+   };
+   var time = A2(Signal.lift,
+   function ($) {
+      return Time.inSeconds(Basics.fst($));
+   },
+   Time.timestamp(Time.fps(40)));
+   var sunAndEarth = A2(Signal.lift,
+   sunAndEarthAt,
+   time);
+   var bouncingBall = A2(Signal.lift,
+   bouncingBallAt,
+   time);
+   var outro = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><p>Now you know how to gravitate with elasticity! Good work physics friend!</p><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "22:9");
+   var body = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><p>Now that we can gravitate, let\'s see if we can do it with elasticity!</p><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "18:8");
+   var intro = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><h1 id=\"physics-how-does-it-work\">Physics: How does it work?</h1>\n<p>Today we are going to learn about gravity.</p><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "11:9");
+   var presentation = F2(function (figure1,
+   figure2) {
+      return A2(Graphics.Element.flow,
+      Graphics.Element.down,
+      _J.toList([intro
+                ,figure1
+                ,body
+                ,figure2
+                ,outro]));
+   });
+   var main = A3(Signal.lift2,
+   presentation,
+   sunAndEarth,
+   bouncingBall);
+   _elm.Main.values = {_op: _op
+                      ,main: main
+                      ,presentation: presentation
+                      ,intro: intro
+                      ,body: body
+                      ,outro: outro
+                      ,time: time
+                      ,sunAndEarthAt: sunAndEarthAt
+                      ,sunAndEarth: sunAndEarth
+                      ,bouncingBallAt: bouncingBallAt
+                      ,bouncingBall: bouncingBall};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

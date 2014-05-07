@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Tree</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var display = F3(function (name,
+   f,
+   v) {
+      return Text.leftAligned(Text.monospace(Text.toText(List.concat(_J.toList([name
+                                                                               ," ("
+                                                                               ,String.show(v)
+                                                                               ,") &rArr;\n    "
+                                                                               ,String.show(f(v))
+                                                                               ,"\n "])))));
+   });
+   var Empty = {ctor: "Empty"};
+   var empty = Empty;
+   var Node = F3(function (a,b,c) {
+      return {ctor: "Node"
+             ,_0: a
+             ,_1: b
+             ,_2: c};
+   });
+   var singleton = function (v) {
+      return A3(Node,
+      v,
+      Empty,
+      Empty);
+   };
+   var insert = F2(function (x,
+   tree) {
+      return function () {
+         switch (tree.ctor)
+         {case "Empty":
+            return singleton(x);
+            case "Node": return _U.eq(x,
+              tree._0) ? tree : _U.cmp(x,
+              tree._0) < 0 ? A3(Node,
+              tree._0,
+              A2(insert,x,tree._1),
+              tree._2) : A3(Node,
+              tree._0,
+              tree._1,
+              A2(insert,x,tree._2));}
+         _E.Case($moduleName,
+         "between lines 23 and 28");
+      }();
+   });
+   var fromList = function (xs) {
+      return A3(List.foldl,
+      insert,
+      empty,
+      xs);
+   };
+   var t1 = fromList(_J.toList([1
+                               ,2
+                               ,3]));
+   var t2 = fromList(_J.toList([2
+                               ,1
+                               ,3]));
+   var depth = function (tree) {
+      return function () {
+         switch (tree.ctor)
+         {case "Empty": return 0;
+            case "Node":
+            return 1 + A2(Basics.max,
+              depth(tree._1),
+              depth(tree._2));}
+         _E.Case($moduleName,
+         "between lines 35 and 37");
+      }();
+   };
+   var map = F2(function (f,tree) {
+      return function () {
+         switch (tree.ctor)
+         {case "Empty": return Empty;
+            case "Node": return A3(Node,
+              f(tree._0),
+              A2(map,f,tree._1),
+              A2(map,f,tree._2));}
+         _E.Case($moduleName,
+         "between lines 41 and 43");
+      }();
+   });
+   var main = A2(Graphics.Element.flow,
+   Graphics.Element.down,
+   _J.toList([A3(display,
+             "depth",
+             depth,
+             t1)
+             ,A3(display,"depth",depth,t2)
+             ,A3(display,
+             "map ((+)1)",
+             map(F2(function (x,y) {
+                return x + y;
+             })(1)),
+             t2)]));
+   _elm.Main.values = {_op: _op
+                      ,empty: empty
+                      ,singleton: singleton
+                      ,insert: insert
+                      ,fromList: fromList
+                      ,depth: depth
+                      ,map: map
+                      ,t1: t1
+                      ,t2: t2
+                      ,main: main
+                      ,display: display
+                      ,Node: Node
+                      ,Empty: Empty};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

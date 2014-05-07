@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Dict</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Dict = Elm.Dict.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var header = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><h2 id=\"trees-genera-in-each-family\">Trees: Genera in each Family</h2><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "35:10");
+   var display = function (_v0) {
+      return function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return A2(Graphics.Element.beside,
+              A2(Graphics.Element.width,
+              100,
+              Text.plainText(_v0._0)),
+              Text.asText(_v0._1));}
+         _E.Case($moduleName,
+         "on line 33, column 5 to 56");
+      }();
+   };
+   var add = F3(function (k,
+   v,
+   dict) {
+      return function () {
+         var vs = A3(Dict.findWithDefault,
+         _J.toList([]),
+         k,
+         dict);
+         return A3(Dict.insert,
+         k,
+         {ctor: "::",_0: v,_1: vs},
+         dict);
+      }();
+   });
+   var groupBy = F3(function (f,
+   g,
+   vs) {
+      return A3(List.foldl,
+      F2(function (v,d) {
+         return A3(add,f(v),g(v),d);
+      }),
+      Dict.empty,
+      vs);
+   });
+   var trees = _J.toList([{_: {}
+                          ,family: "Rosaceae"
+                          ,genus: "Crataegus"}
+                         ,{_: {}
+                          ,family: "Theaceae"
+                          ,genus: "Gordonia"}
+                         ,{_: {}
+                          ,family: "Ulmaceae"
+                          ,genus: "Ulmus"}
+                         ,{_: {}
+                          ,family: "Rosaceae"
+                          ,genus: "Pyrus"}
+                         ,{_: {}
+                          ,family: "Rosaceae"
+                          ,genus: "Malus"}
+                         ,{_: {}
+                          ,family: "Theaceae"
+                          ,genus: "Stewartia"}
+                         ,{_: {}
+                          ,family: "Rosaceae"
+                          ,genus: "Prunus"}
+                         ,{_: {}
+                          ,family: "Ulmaceae"
+                          ,genus: "Zelkova"}]);
+   var familyToGenera = A3(groupBy,
+   function (_) {
+      return _.family;
+   },
+   function (_) {
+      return _.genus;
+   },
+   trees);
+   var main = A2(Graphics.Element.flow,
+   Graphics.Element.down,
+   {ctor: "::"
+   ,_0: header
+   ,_1: A2(List.map,
+   display,
+   Dict.toList(familyToGenera))});
+   _elm.Main.values = {_op: _op
+                      ,trees: trees
+                      ,add: add
+                      ,groupBy: groupBy
+                      ,familyToGenera: familyToGenera
+                      ,display: display
+                      ,header: header
+                      ,main: main};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Typeface</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var sentences = function () {
+      var msg = "\nThe quick brown fox jumps over the lazy dog.\n";
+      var sentence = function (tfs) {
+         return Text.leftAligned(A2(Text.typeface,
+         tfs,
+         Text.toText(msg)));
+      };
+      return A2(List.map,
+      sentence,
+      _L.fromArray([_L.fromArray(["times new roman"])
+                   ,_L.fromArray(["helvetica"
+                                 ,"sans-serif"])
+                   ,_L.fromArray(["georgia"
+                                 ,"serif"])
+                   ,_L.fromArray(["trebuchet ms"
+                                 ,"sans-serif"])
+                   ,_L.fromArray(["inconsolata"
+                                 ,"courier new"
+                                 ,"monospace"])]));
+   }();
+   var main = A2(Graphics.Element.flow,
+   Graphics.Element.down,
+   sentences);
+   _elm.Main.values = {_op: _op
+                      ,main: main
+                      ,sentences: sentences};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

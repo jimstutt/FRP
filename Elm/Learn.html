@@ -1,0 +1,456 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Learn</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Website = Website || {};
+   Website.Skeleton = Elm.Website.Skeleton.make(_elm);
+   var Window = Elm.Window.make(_elm);
+   var _op = {};
+   var papers = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><h4 id=\"conference-videos\">Conference Videos</h4>\n<ul>\n<li><a href=\"http://www.infoq.com/presentations/elm-reactive-programming\">StrangeLoop 2013</a> — The best one so far! Teaches the basics of graphics and FRP in Elm and builds up to implementing a basic <a href=\"/edit/examples/Intermediate/Mario.elm\">Mario game</a> <em>and</em> it is pretty fun to watch.</li>\n<li><a href=\"http://www.ustream.tv/recorded/29330499\">mloc.js 2013</a> — a less polished version of the StrangeLoop 2013 talk.</li>\n<li><a href=\"http://www.infoq.com/presentations/Elm\">StrangeLoop 2012</a> — First conference talk ever. Covers the basics of graphics and FRP before Elm even had its record system!</li>\n</ul>\n<h4 id=\"publications\">Publications</h4>\n<ul>\n<li><a href=\"http://www.testblogpleaseignore.com/wp-content/uploads/2012/04/thesis.pdf\" title=\"thesis\">Concurrent FRP for GUIs</a> — overview of Elm and history of FRP</li>\n<li><a href=\"http://people.seas.harvard.edu/~chong/abstracts/CzaplickiC13.html\" title=\"PLDI 2013 paper\">Asynchronous FRP for GUIs</a> — formal semantics of Elm, PLDI 2013</li>\n</ul>\n<h4 id=\"articles-blog\">Articles / Blog</h4>\n<ul>\n<li><a href=\"http://debug.elm-lang.org\">Elm’s Time Traveling Debugger</a></li>\n<li><a href=\"/blog/announce/PackageManager.elm\">Elm package manager</a></li>\n<li><a href=\"/blog/announce/Repl.elm\">Elm REPL</a></li>\n<li><a href=\"/blog/Interactive-Programming.elm\">Hot-swapping in Elm</a></li>\n<li><a href=\"https://prezi.com/npjjrmt_badc/tangrams-logo/\">Concepts behind the Elm Logo</a></li>\n<li><a href=\"http://venturebeat.com/2013/07/26/why-i-designed-a-front-end-programming-language-from-scratch/\">Elm in VentureBeat</a></li>\n<li><a href=\"/blog/announce/Elm-and-Prezi.elm\">Elm ♥ Prezi</a></li>\n<li><a href=\"/blog/Pong.elm\">Making Pong</a></li>\n</ul><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "57:10");
+   var rightCol = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><h4 id=\"beginner-classes\">Beginner Classes</h4>\n<ul>\n<li><a href=\"/learn/courses/beginner/Programming.elm\">Intro to Programming</a></li>\n<li><a href=\"/learn/courses/beginner/Graphics.elm\">Intro to Graphics</a></li>\n<li><a href=\"/learn/courses/beginner/Lists-and-Records.elm\">Intro to Lists and Records</a></li>\n</ul>\n<h4 id=\"making-stuff\">Making Stuff</h4>\n<ul>\n<li><a href=\"https://github.com/elm-lang/elm-lang.org#elm-langorg-a-template-for-creating-websites-in-elm\">Website skeleton</a></li>\n<li><a href=\"https://github.com/elm-lang/elm-lang.org/blob/master/public/examples/Intermediate/GameSkeleton.elm#L1\">Game skeleton</a></li>\n<li><a href=\"/blog/Pong.elm\">Making Pong</a></li>\n</ul><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "41:12");
+   var leftCol = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><h4 id=\"general-resources\">General Resources</h4>\n<ul>\n<li><a href=\"/learn/Syntax.elm\">Syntax reference</a></li>\n<li><a href=\"/learn/Roadmap.elm\">Learning roadmap</a></li>\n<li><a href=\"/learn/FAQ.elm\">FAQ by language</a></li>\n</ul>\n<h4 id=\"topic-tutorials\">Topic Tutorials</h4>\n<ul>\n<li><a href=\"/learn/What-is-FRP.elm\">FRP</a></li>\n<li><a href=\"/learn/Getting-started-with-Types.elm\">Types</a></li>\n<li><a href=\"/learn/Pattern-Matching.elm\">Algebraic Data Types</a></li>\n<li><a href=\"/learn/Records.elm\">Records</a></li>\n<li><a href=\"/learn/Interactive-UI-Elements.elm\">Interactive UI Elements</a></li>\n<li><a href=\"/learn/Components.elm\">Embed in HTML</a></li>\n<li><a href=\"/learn/Ports.elm\">Interop with JS</a></li>\n</ul><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "21:11");
+   var intro = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><style>\nh1 { margin-bottom: 0; }\nul { margin-top: 0; }\nh2,h3,h4 { margin-bottom: 0.5em; margin-top: 2em; }\nh5 { margin-bottom: 0.5em; }\n</style>\n\n<h1 id=\"learn\">Learn</h1>\n<p>The <a href=\"/learn/Syntax.elm\">syntax reference</a> is a good place to start. The <a href=\"/Examples.elm\">examples page</a> is intended to help you learn by example, slowly building up skills. This page provides more in-depth documentation.</p><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "4:9");
+   var content = function (w) {
+      return function () {
+         var hwidth = _U.cmp(w,
+         800) < 0 ? (w / 2 | 0) - 20 : 380;
+         return A2(Graphics.Element.flow,
+         Graphics.Element.down,
+         _J.toList([A2(Graphics.Element.width,
+                   w,
+                   intro)
+                   ,A2(Graphics.Element.flow,
+                   Graphics.Element.right,
+                   _J.toList([A2(Graphics.Element.width,
+                             hwidth,
+                             leftCol)
+                             ,A2(Graphics.Element.spacer,
+                             40,
+                             10)
+                             ,A2(Graphics.Element.width,
+                             hwidth,
+                             rightCol)]))
+                   ,A2(Graphics.Element.width,
+                   w,
+                   papers)]));
+      }();
+   };
+   var main = A2(Signal.lift,
+   Website.Skeleton.skeleton(content),
+   Window.dimensions);
+   _elm.Main.values = {_op: _op
+                      ,intro: intro
+                      ,leftCol: leftCol
+                      ,rightCol: rightCol
+                      ,papers: papers
+                      ,content: content
+                      ,main: main};
+   return _elm.Main.values;
+};Elm.Website = Elm.Website || {};
+Elm.Website.Skeleton = Elm.Website.Skeleton || {};
+Elm.Website.Skeleton.make = function (_elm) {
+   "use strict";
+   _elm.Website = _elm.Website || {};
+   _elm.Website.Skeleton = _elm.Website.Skeleton || {};
+   if (_elm.Website.Skeleton.values)
+   return _elm.Website.Skeleton.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Website.Skeleton";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Website = Website || {};
+   Website.Button = Elm.Website.Button.make(_elm);
+   var Website = Website || {};
+   Website.ColorScheme = Elm.Website.ColorScheme.make(_elm);
+   var _op = {};
+   var installButtons = function (w) {
+      return function () {
+         var href = "https://github.com/elm-lang/elm-platform/blob/master/README.md#elm-platform";
+         return A2(Graphics.Element.flow,
+         Graphics.Element.right,
+         _J.toList([A4(Website.Button.button,
+                   w / 2 | 0,
+                   180,
+                   "/try",
+                   "Try")
+                   ,A4(Website.Button.button,
+                   w / 2 | 0,
+                   180,
+                   href,
+                   "Install")]));
+      }();
+   };
+   var footerWords = function () {
+      var wordLink = F4(function (words1,
+      href,
+      words2,
+      words3) {
+         return _L.append(Text.toText(words1),
+         _L.append(A2(Text.link,
+         href,
+         Text.toText(words2)),
+         Text.toText(words3)));
+      });
+      return Text.color(A3(Color.rgb,
+      145,
+      145,
+      145))(_L.append(A4(wordLink,
+      "written in Elm and ",
+      "https://github.com/elm-lang/elm-lang.org",
+      "open source",
+      ""),
+      A4(wordLink,
+      " / ",
+      "https://github.com/evancz",
+      "Evan Czaplicki",
+      " &copy;2011-14")));
+   }();
+   var paths = _J.toList([{ctor: "_Tuple2"
+                          ,_0: "Learn"
+                          ,_1: "/Learn.elm"}
+                         ,{ctor: "_Tuple2"
+                          ,_0: "Examples"
+                          ,_1: "/Examples.elm"}
+                         ,{ctor: "_Tuple2"
+                          ,_0: "Libraries"
+                          ,_1: "/Libraries.elm"}
+                         ,{ctor: "_Tuple2"
+                          ,_0: "Install"
+                          ,_1: "/Install.elm"}]);
+   var bigLogo = function () {
+      var name = Text.leftAligned(Text.height(60)(Text.toText("elm")));
+      return A2(Graphics.Element.flow,
+      Graphics.Element.right,
+      _J.toList([A3(Graphics.Element.image,
+                80,
+                80,
+                "/logo.png")
+                ,A2(Graphics.Element.spacer,
+                10,
+                80)
+                ,A4(Graphics.Element.container,
+                Graphics.Element.widthOf(name),
+                80,
+                Graphics.Element.middle,
+                name)]));
+   }();
+   var footerHeight = 120;
+   var topBarPadding = 2;
+   var topBarHeight = 42;
+   var extraHeight = topBarHeight + topBarPadding + footerHeight;
+   var logo = function (w) {
+      return function () {
+         var name = Text.leftAligned(Text.height(24)(Text.toText("elm")));
+         return A3(Graphics.Element.container,
+         w,
+         topBarHeight,
+         Graphics.Element.midLeft)(Graphics.Element.link("/")(A2(Graphics.Element.flow,
+         Graphics.Element.right,
+         _J.toList([A3(Graphics.Element.image,
+                   30,
+                   30,
+                   "/logo.png")
+                   ,A2(Graphics.Element.spacer,
+                   4,
+                   30)
+                   ,A4(Graphics.Element.container,
+                   Graphics.Element.widthOf(name),
+                   30,
+                   Graphics.Element.middle,
+                   name)]))));
+      }();
+   };
+   var tab = function (_v0) {
+      return function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return function () {
+                 var words = Text.leftAligned(Text.link(_v0._1)(Text.toText(_v0._0)));
+                 return A4(Graphics.Element.container,
+                 Graphics.Element.widthOf(words) + 20,
+                 topBarHeight,
+                 Graphics.Element.midRight,
+                 words);
+              }();}
+         _E.Case($moduleName,
+         "between lines 66 and 67");
+      }();
+   };
+   var tabs = A2(List.map,
+   tab,
+   paths);
+   var topBar = F3(function (isNormal,
+   inner,
+   w) {
+      return function () {
+         var leftWidth = inner - List.sum(A2(List.map,
+         Graphics.Element.widthOf,
+         tabs));
+         var left = isNormal ? logo(leftWidth) : A2(Graphics.Element.spacer,
+         leftWidth,
+         30);
+         return A2(Graphics.Element.flow,
+         Graphics.Element.down,
+         _J.toList([A3(Graphics.Element.container,
+                   w,
+                   topBarHeight,
+                   Graphics.Element.middle)(Graphics.Element.flow(Graphics.Element.right)({ctor: "::"
+                                                                                          ,_0: left
+                                                                                          ,_1: tabs}))
+                   ,A3(Graphics.Element.container,
+                   w,
+                   topBarPadding,
+                   Graphics.Element.midTop)(A2(Graphics.Element.color,
+                   Website.ColorScheme.mediumGrey,
+                   A2(Graphics.Element.spacer,
+                   inner + 80,
+                   1)))]));
+      }();
+   });
+   var flexSkeleton = F4(function (isNormal,
+   inner,
+   bodyFunc,
+   _v4) {
+      return function () {
+         switch (_v4.ctor)
+         {case "_Tuple2":
+            return function () {
+                 var content = bodyFunc(A2(Basics.min,
+                 inner,
+                 _v4._0));
+                 return Graphics.Element.color(Website.ColorScheme.lightGrey)(A2(Graphics.Element.flow,
+                 Graphics.Element.down,
+                 _J.toList([A3(topBar,
+                           isNormal,
+                           inner,
+                           _v4._0)
+                           ,A4(Graphics.Element.container,
+                           _v4._0,
+                           A2(Basics.max,
+                           _v4._1 - extraHeight,
+                           Graphics.Element.heightOf(content)),
+                           Graphics.Element.midTop,
+                           content)
+                           ,A3(Graphics.Element.container,
+                           _v4._0,
+                           footerHeight,
+                           Graphics.Element.midBottom)(Graphics.Element.flow(Graphics.Element.down)(_J.toList([A3(Graphics.Element.container,
+                                                                                                              _v4._0,
+                                                                                                              2,
+                                                                                                              Graphics.Element.middle)(Graphics.Element.color(Website.ColorScheme.mediumGrey)(A2(Graphics.Element.spacer,
+                                                                                                              inner + 80,
+                                                                                                              1)))
+                                                                                                              ,A3(Graphics.Element.container,
+                                                                                                              _v4._0,
+                                                                                                              50,
+                                                                                                              Graphics.Element.middle)(Text.centered(footerWords))])))])));
+              }();}
+         _E.Case($moduleName,
+         "between lines 23 and 31");
+      }();
+   });
+   var homeSkeleton = A2(flexSkeleton,
+   false,
+   526);
+   var skeleton$ = flexSkeleton(true);
+   var skeleton = A2(flexSkeleton,
+   true,
+   526);
+   _elm.Website.Skeleton.values = {_op: _op
+                                  ,skeleton: skeleton
+                                  ,skeleton$: skeleton$
+                                  ,homeSkeleton: homeSkeleton
+                                  ,installButtons: installButtons
+                                  ,bigLogo: bigLogo};
+   return _elm.Website.Skeleton.values;
+};Elm.Website = Elm.Website || {};
+Elm.Website.Button = Elm.Website.Button || {};
+Elm.Website.Button.make = function (_elm) {
+   "use strict";
+   _elm.Website = _elm.Website || {};
+   _elm.Website.Button = _elm.Website.Button || {};
+   if (_elm.Website.Button.values)
+   return _elm.Website.Button.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Website.Button";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Input = Elm.Graphics.Input.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var faces = _J.toList(["Lucida Grande"
+                         ,"Trebuchet MS"
+                         ,"Bitstream Vera Sans"
+                         ,"Verdana"
+                         ,"Helvetica"
+                         ,"sans-serif"]);
+   var box = F4(function (w,
+   msg,
+   c1,
+   c2) {
+      return function () {
+         var words = Text.leftAligned(Text.height(30)(Text.typeface(faces)(Text.color(Color.charcoal)(Text.toText(msg)))));
+         return Graphics.Element.color(c2)(A3(Graphics.Element.container,
+         w,
+         50,
+         Graphics.Element.middle)(Graphics.Element.color(c1)(A3(Graphics.Element.container,
+         w - 2,
+         48,
+         Graphics.Element.middle)(words))));
+      }();
+   });
+   var click = Graphics.Input.input({ctor: "_Tuple0"});
+   var button = F4(function (outerWidth,
+   innerWidth,
+   href,
+   msg) {
+      return function () {
+         var box$ = A2(box,
+         innerWidth,
+         msg);
+         return A3(Graphics.Element.container,
+         outerWidth,
+         100,
+         Graphics.Element.middle)(Graphics.Element.link(href)(A5(Graphics.Input.customButton,
+         click.handle,
+         {ctor: "_Tuple0"},
+         A2(box$,
+         Color.lightGrey,
+         Color.grey),
+         A2(box$,
+         Color.lightGrey,
+         Color.darkGrey),
+         A2(box$,
+         Color.grey,
+         Color.blue))));
+      }();
+   });
+   _elm.Website.Button.values = {_op: _op
+                                ,button: button};
+   return _elm.Website.Button.values;
+};Elm.Website = Elm.Website || {};
+Elm.Website.ColorScheme = Elm.Website.ColorScheme || {};
+Elm.Website.ColorScheme.make = function (_elm) {
+   "use strict";
+   _elm.Website = _elm.Website || {};
+   _elm.Website.ColorScheme = _elm.Website.ColorScheme || {};
+   if (_elm.Website.ColorScheme.values)
+   return _elm.Website.ColorScheme.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Website.ColorScheme";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var mediumGrey = A3(Color.rgb,
+   216,
+   221,
+   225);
+   var lightGrey = A3(Color.rgb,
+   245,
+   245,
+   245);
+   var accent4 = A3(Color.rgb,
+   127,
+   209,
+   59);
+   var accent3 = A3(Color.rgb,
+   234,
+   21,
+   122);
+   var accent2 = A3(Color.rgb,
+   240,
+   173,
+   0);
+   var accent1 = A3(Color.rgb,
+   96,
+   181,
+   204);
+   var accent0 = A3(Color.rgb,
+   90,
+   99,
+   120);
+   _elm.Website.ColorScheme.values = {_op: _op
+                                     ,accent0: accent0
+                                     ,accent1: accent1
+                                     ,accent2: accent2
+                                     ,accent3: accent3
+                                     ,accent4: accent4
+                                     ,lightGrey: lightGrey
+                                     ,mediumGrey: mediumGrey};
+   return _elm.Website.ColorScheme.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>RadialGradient</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var grad4 = A5(Color.radial,
+   {ctor: "_Tuple2",_0: 0,_1: 0},
+   10,
+   {ctor: "_Tuple2",_0: 7,_1: -5},
+   30,
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: 0
+                 ,_1: A3(Color.rgb,167,211,12)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 0.9
+                 ,_1: A3(Color.rgb,1,159,98)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 1
+                 ,_1: A4(Color.rgba,
+                 1,
+                 159,
+                 98,
+                 0)}]));
+   var grad3 = A5(Color.radial,
+   {ctor: "_Tuple2",_0: 0,_1: 0},
+   20,
+   {ctor: "_Tuple2",_0: 7,_1: -15},
+   50,
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: 0
+                 ,_1: A3(Color.rgb,255,95,152)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 0.75
+                 ,_1: A3(Color.rgb,255,1,136)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 1
+                 ,_1: A4(Color.rgba,
+                 255,
+                 1,
+                 136,
+                 0)}]));
+   var grad2 = A5(Color.radial,
+   {ctor: "_Tuple2",_0: 0,_1: 0},
+   15,
+   {ctor: "_Tuple2",_0: 7,_1: -5},
+   40,
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: 0
+                 ,_1: A3(Color.rgb,0,201,255)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 0.8
+                 ,_1: A3(Color.rgb,0,181,226)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 1
+                 ,_1: A4(Color.rgba,
+                 0,
+                 181,
+                 226,
+                 0)}]));
+   var grad1 = A5(Color.radial,
+   {ctor: "_Tuple2",_0: 0,_1: 0},
+   50,
+   {ctor: "_Tuple2",_0: 0,_1: 10},
+   90,
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: 0
+                 ,_1: A3(Color.rgb,244,242,1)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 0.8
+                 ,_1: A3(Color.rgb,228,199,0)}
+                ,{ctor: "_Tuple2"
+                 ,_0: 1
+                 ,_1: A4(Color.rgba,
+                 228,
+                 199,
+                 0,
+                 0)}]));
+   var main = A3(Graphics.Collage.collage,
+   300,
+   300,
+   _L.fromArray([A2(Graphics.Collage.move,
+                {ctor: "_Tuple2"
+                ,_0: -55
+                ,_1: -55},
+                A2(Graphics.Collage.gradient,
+                grad1,
+                Graphics.Collage.circle(100)))
+                ,A2(Graphics.Collage.move,
+                {ctor: "_Tuple2",_0: 40,_1: 85},
+                A2(Graphics.Collage.gradient,
+                grad2,
+                Graphics.Collage.circle(100)))
+                ,A2(Graphics.Collage.move,
+                {ctor: "_Tuple2"
+                ,_0: 50
+                ,_1: -10},
+                A2(Graphics.Collage.gradient,
+                grad3,
+                Graphics.Collage.circle(100)))
+                ,A2(Graphics.Collage.move,
+                {ctor: "_Tuple2"
+                ,_0: -10
+                ,_1: 50},
+                A2(Graphics.Collage.gradient,
+                grad4,
+                Graphics.Collage.circle(100)))]));
+   _elm.Main.values = {_op: _op
+                      ,grad1: grad1
+                      ,grad2: grad2
+                      ,grad3: grad3
+                      ,grad4: grad4
+                      ,main: main};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Redirect</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Input = Elm.Graphics.Input.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var message = Text.markdown("<div style=\"height:0;width:0;\">&nbsp;</div><h1 id=\"redirecting-with-ports\">Redirecting with ports</h1>\n<p>This example uses <a href=\"http://elm-lang.org/learn/Ports.elm\">ports</a> to redirect to a different page. The &quot;redirect&quot; port has a default handler that reacts to non-empty strings.</p>\n<p>See <a href=\"/learn/Syntax.elm#javascript-ffi\">the full list of built-in port handlers</a> for more information.</p><div style=\"height:0;width:0;\">&nbsp;</div>",
+   "17:11");
+   var click = Graphics.Input.input({ctor: "_Tuple0"});
+   var redirect = Native.Ports.portOut("redirect",
+   Native.Ports.outgoingSignal(function (v) {
+      return v;
+   }),
+   A2(Signal.merge,
+   Signal.constant(""),
+   A2(Signal._op["<~"],
+   Basics.always("http://elm-lang.org"),
+   click.signal)));
+   var main = A2(Graphics.Element.flow,
+   Graphics.Element.down,
+   _L.fromArray([message
+                ,A3(Graphics.Input.button,
+                click.handle,
+                {ctor: "_Tuple0"},
+                "Redirect to elm-lang.org")]));
+   _elm.Main.values = {_op: _op
+                      ,main: main
+                      ,click: click
+                      ,message: message};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

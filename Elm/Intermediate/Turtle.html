@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Turtle</title><script type="text/javascript" src="../elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   _J = _N.JavaScript.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var Keyboard = Elm.Keyboard.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Window = Elm.Window.make(_elm);
+   var _op = {};
+   var floatify = function (_v0) {
+      return function () {
+         return {_: {}
+                ,x: Basics.toFloat(_v0.x)
+                ,y: Basics.toFloat(_v0.y)};
+      }();
+   };
+   var delta = A2(Signal._op["<~"],
+   Time.inSeconds,
+   Time.fps(30));
+   var input = Signal.sampleOn(delta)(A3(Signal.lift2,
+   F2(function (v0,v1) {
+      return {ctor: "_Tuple2"
+             ,_0: v0
+             ,_1: v1};
+   }),
+   A2(Signal._op["<~"],
+   floatify,
+   Keyboard.arrows),
+   delta));
+   var display = F2(function (_v2,
+   turtle) {
+      return function () {
+         switch (_v2.ctor)
+         {case "_Tuple2":
+            return function () {
+                 var turtlePic = Graphics.Collage.move({ctor: "_Tuple2"
+                                                       ,_0: turtle.x
+                                                       ,_1: turtle.y})(Graphics.Collage.rotate(turtle.angle)(Graphics.Collage.toForm(A3(Graphics.Element.image,
+                 96,
+                 96,
+                 "./resources/turtle.gif"))));
+                 return Graphics.Element.layers(_J.toList([A3(Graphics.Collage.collage,
+                                                          _v2._0,
+                                                          _v2._1,
+                                                          _J.toList([turtlePic]))
+                                                          ,Graphics.Element.opacity(0.7)(A3(Graphics.Element.fittedImage,
+                                                          _v2._0,
+                                                          _v2._1,
+                                                          "./resources/water.gif"))]));
+              }();}
+         _E.Case($moduleName,
+         "between lines 34 and 38");
+      }();
+   });
+   var swimStep = F2(function (delta,
+   _v6) {
+      return function () {
+         return _U.replace([["x"
+                            ,_v6.x + delta * _v6.velocity * Basics.cos(_v6.angle)]
+                           ,["y"
+                            ,_v6.y + delta * _v6.velocity * Basics.sin(_v6.angle)]],
+         _v6);
+      }();
+   });
+   var keysStep = F2(function (arrows,
+   turtle) {
+      return _U.replace([["velocity"
+                         ,40 * arrows.y]
+                        ,["angle"
+                         ,turtle.angle - arrows.x / 20]],
+      turtle);
+   });
+   var step = F2(function (_v8,
+   turtle) {
+      return function () {
+         switch (_v8.ctor)
+         {case "_Tuple2":
+            return keysStep(_v8._0)(A2(swimStep,
+              _v8._1,
+              turtle));}
+         _E.Case($moduleName,
+         "on line 28, column 3 to 43");
+      }();
+   });
+   var Arrows = F2(function (a,b) {
+      return {_: {},x: a,y: b};
+   });
+   var turtle = {_: {}
+                ,angle: 0
+                ,velocity: 0
+                ,x: 0
+                ,y: 0};
+   var main = A3(Signal.lift2,
+   display,
+   Window.dimensions,
+   A3(Signal.foldp,
+   step,
+   turtle,
+   input));
+   var Turtle = F4(function (a,
+   b,
+   c,
+   d) {
+      return {_: {}
+             ,angle: c
+             ,velocity: d
+             ,x: a
+             ,y: b};
+   });
+   _elm.Main.values = {_op: _op
+                      ,turtle: turtle
+                      ,keysStep: keysStep
+                      ,swimStep: swimStep
+                      ,step: step
+                      ,display: display
+                      ,delta: delta
+                      ,floatify: floatify
+                      ,input: input
+                      ,main: main
+                      ,Turtle: Turtle
+                      ,Arrows: Arrows};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

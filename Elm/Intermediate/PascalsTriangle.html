@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>PascalsTriangle</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Window = Elm.Window.make(_elm);
+   var _op = {};
+   var step = function (row) {
+      return A3(List.zipWith,
+      F2(function (x,y) {
+         return x + y;
+      }),
+      {ctor: "::",_0: 0,_1: row},
+      _L.append(row,
+      _L.fromArray([0])));
+   };
+   var pascals = function (depth) {
+      return A3(List.scanl,
+      function (_v0) {
+         return function () {
+            return step;
+         }();
+      },
+      _L.fromArray([1]),
+      _L.range(1,depth - 1));
+   };
+   var triangle = function (w) {
+      return function () {
+         var style = function ($) {
+            return Graphics.Element.width(w)(Text.centered(Text.monospace(Text.toText(String.show($)))));
+         };
+         return Graphics.Element.flow(Graphics.Element.down)(List.map(style)(pascals(8)));
+      }();
+   };
+   var main = A2(Signal.lift,
+   triangle,
+   Window.width);
+   _elm.Main.values = {_op: _op
+                      ,main: main
+                      ,triangle: triangle
+                      ,step: step
+                      ,pascals: pascals};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

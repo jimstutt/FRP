@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>MovingBox</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var Keyboard = Elm.Keyboard.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var update = F2(function (_v0,
+   _v1) {
+      return function () {
+         switch (_v1.ctor)
+         {case "_Tuple2":
+            return function () {
+                 switch (_v0.ctor)
+                 {case "_Tuple2":
+                    switch (_v0._1.ctor)
+                      {case "_Tuple2":
+                         return {ctor: "_Tuple2"
+                                ,_0: _v1._0 + _v0._0 * _v0._1._0 / 10
+                                ,_1: _v1._1 + _v0._0 * _v0._1._1 / 10};}
+                      break;}
+                 _E.Case($moduleName,
+                 "on line 28, column 6 to 40");
+              }();}
+         _E.Case($moduleName,
+         "on line 28, column 6 to 40");
+      }();
+   });
+   var toVector = function (_v10) {
+      return function () {
+         return !_U.eq(_v10.x,
+         0) && !_U.eq(_v10.y,
+         0) ? {ctor: "_Tuple2"
+              ,_0: _v10.x / Basics.sqrt(2)
+              ,_1: _v10.y / Basics.sqrt(2)} : {ctor: "_Tuple2"
+                                              ,_0: _v10.x
+                                              ,_1: _v10.y};
+      }();
+   };
+   var delta = Time.fps(30);
+   var input = function () {
+      var vectors = A2(Signal._op["<~"],
+      toVector,
+      Keyboard.arrows);
+      return A2(Signal.sampleOn,
+      delta,
+      A3(Signal.lift2,
+      F2(function (v0,v1) {
+         return {ctor: "_Tuple2"
+                ,_0: v0
+                ,_1: v1};
+      }),
+      delta,
+      vectors));
+   }();
+   var position = A3(Signal.foldp,
+   update,
+   {ctor: "_Tuple2",_0: 0,_1: 0},
+   input);
+   var squareSize = 40;
+   var areaSize = 400;
+   var display = function (xy) {
+      return A3(Graphics.Collage.collage,
+      Basics.round(areaSize),
+      Basics.round(areaSize),
+      _L.fromArray([Graphics.Collage.filled(Color.grey)(A2(Graphics.Collage.rect,
+                   areaSize,
+                   areaSize))
+                   ,Graphics.Collage.move(xy)(Graphics.Collage.outlined(Graphics.Collage.solid(Color.black))(A2(Graphics.Collage.rect,
+                   squareSize,
+                   squareSize)))]));
+   };
+   var main = A2(Signal._op["<~"],
+   display,
+   position);
+   _elm.Main.values = {_op: _op
+                      ,areaSize: areaSize
+                      ,squareSize: squareSize
+                      ,main: main
+                      ,delta: delta
+                      ,input: input
+                      ,toVector: toVector
+                      ,position: position
+                      ,update: update
+                      ,display: display};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>

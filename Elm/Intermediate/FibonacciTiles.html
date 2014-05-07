@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>FibonacciTiles</title><script type="text/javascript" src="/home/jim/Sandbox/Elm/.cabal-sandbox/share/x86_64-linux-ghc-7.8.2/Elm-0.12/elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var _op = {};
+   var dirs = _L.fromArray([Graphics.Element.beside
+                           ,Graphics.Element.above
+                           ,Basics.flip(Graphics.Element.beside)
+                           ,Graphics.Element.below]);
+   var ith = F2(function (i,lst) {
+      return function () {
+         switch (lst.ctor)
+         {case "::": return _U.eq(i,
+              0) ? lst._0 : A2(ith,
+              i - 1,
+              lst._1);}
+         _E.Case($moduleName,
+         "on line 16, column 13 to 72");
+      }();
+   });
+   var fibHelp = F3(function (a,
+   b,
+   n) {
+      return _U.cmp(n,
+      0) < 1 ? a : A3(fibHelp,
+      b,
+      a + b,
+      n - 1);
+   });
+   var fib = A2(fibHelp,0,1);
+   var fibSquare = function (n) {
+      return function () {
+         var clr = A3(Color.rgb,
+         A2(Basics.mod,85 * n,256),
+         A2(Basics.mod,36 * n,256),
+         A2(Basics.mod,51 * n,256));
+         var fN = fib(n);
+         var len = fN * 15;
+         return Graphics.Element.color(clr)(A3(Graphics.Element.container,
+         len,
+         len,
+         Graphics.Element.middle)(Text.asText(fN)));
+      }();
+   };
+   var combine = F2(function (n,
+   tiles) {
+      return function () {
+         var dir = A2(ith,
+         A2(Basics.mod,
+         n,
+         List.length(dirs)),
+         dirs);
+         return A2(dir,
+         tiles,
+         fibSquare(n));
+      }();
+   });
+   var main = A3(List.foldl,
+   combine,
+   fibSquare(1),
+   _L.range(2,7));
+   _elm.Main.values = {_op: _op
+                      ,fibHelp: fibHelp
+                      ,fib: fib
+                      ,fibSquare: fibSquare
+                      ,ith: ith
+                      ,dirs: dirs
+                      ,combine: combine
+                      ,main: main};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>
